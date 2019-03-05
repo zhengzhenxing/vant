@@ -33,6 +33,11 @@ function isAndroid() {
   return isServer ? false : /android/.test(navigator.userAgent.toLowerCase());
 }
 
+export function isIOS() {
+  /* istanbul ignore next */
+  return isServer ? false : /ios|iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase());
+}
+
 function range(num, min, max) {
   return Math.min(Math.max(num, min), max);
 }
