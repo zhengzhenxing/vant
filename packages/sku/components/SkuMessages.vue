@@ -24,7 +24,6 @@
         :label="message.name"
         :placeholder="getPlaceholder(message)"
         :type="getType(message)"
-        @blur="onBlur"
       />
     </template>
   </cell-group>
@@ -36,7 +35,6 @@ import Field from '../../field';
 import validateEmail from '../../utils/validate/email';
 import validateNumber from '../../utils/validate/number';
 import SkuImgUploader from './SkuImgUploader';
-import { isIOS } from '../../utils';
 
 const PLACEHOLDER = {
   id_no: '输入身份证号码',
@@ -82,15 +80,6 @@ export default create({
   },
 
   methods: {
-    onBlur() {
-      // https://developers.weixin.qq.com/community/develop/doc/00044ae90742f8c82fb78fcae56800
-      // 修复ios12键盘弹起后点击错位的问题
-      /* istanbul ignore next */
-      if (isIOS()) {
-        window.scrollTo(0, 0);
-      }
-    },
-
     resetMessageValues(messages) {
       return (messages || []).map(() => ({ value: '' }));
     },
